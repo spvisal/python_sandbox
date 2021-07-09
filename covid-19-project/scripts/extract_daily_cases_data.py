@@ -1,12 +1,16 @@
+#import required module
 import pandas as pd
 import requests
 import io
 from datetime import timedelta, date
 
+#function to calculate the date range
 def daterange(start_date, end_date):
     for n in range(int ((end_date - start_date).days)):
         yield start_date + timedelta(n)
 
+#function to extract the data from repo. This will also download the data on local-machine, if data is
+#missing for the date then it will log that into seperate file.
 def extract_data():
     start_date = date(2021, 7, 9)
     end_date = date(2021, 7, 12)
@@ -25,4 +29,5 @@ def extract_data():
                 file1.write("Data is not available for " + fromatted_string + "\n")
         continue
 
+#call to the function
 extract_data()
